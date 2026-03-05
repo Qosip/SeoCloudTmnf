@@ -1,0 +1,24 @@
+User-agent: *
+Allow: /
+
+# Pages publiques indexables
+Allow: /guides/
+Allow: /docs/
+Allow: /blog/
+Allow: /pricing
+Allow: /products
+Allow: /promo
+Allow: /support
+
+# Pages privées / app (non indexables)
+Disallow: /dashboard
+Disallow: /console
+Disallow: /maps
+Disallow: /settings
+Disallow: /servers
+Disallow: /checkout
+Disallow: /login
+Disallow: /register
+
+# Sitemap
+Sitemap: https://www.trackhost.gg/sitemap.xml

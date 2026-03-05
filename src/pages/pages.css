@@ -66,6 +66,14 @@
     opacity: 0.9;
 }
 
+/* When landing-nav-link is on a <button> element, reset native button styles */
+button.landing-nav-link {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-display);
+}
+
 .landing-nav-actions {
     display: flex;
     align-items: center;

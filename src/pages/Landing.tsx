@@ -4,7 +4,7 @@ import {
     Zap, Server, Terminal, Map, BarChart2, ChevronRight, ArrowRight,
     Shield, Star, BookOpen, MessageSquare, Tag, Gift, ShoppingBag, LogIn,
     Check, Users, Cpu, Activity, Clock, HelpCircle, LayoutDashboard, Layers,
-    FileText, BarChart3, Settings
+    BarChart3, Settings, Gamepad2
 } from 'lucide-react'
 import './pages.css'
 
@@ -23,7 +23,6 @@ function StarRow({ n }: { n: number }) {
 }
 
 /* ─── Nav Dropdown (avec délai pour faciliter la sélection) ────────────────── */
-const DROPDOWN_DELAY_MS = 280
 
 function NavDropdown({ trigger, children }: { trigger: React.ReactNode; children: React.ReactNode }) {
     const [open, setOpen] = useState(false)
@@ -37,7 +36,7 @@ function NavDropdown({ trigger, children }: { trigger: React.ReactNode; children
     }
     const scheduleClose = () => {
         clearClose()
-        timeoutRef.current = setTimeout(() => setOpen(false), DROPDOWN_DELAY_MS)
+        setOpen(false)
     }
 
     return (
@@ -68,7 +67,7 @@ export default function Landing() {
 
                 <div className="landing-nav-links">
                     {/* Boutique */}
-                    <NavDropdown trigger={<Link to="/products" className="landing-nav-link"><ShoppingBag size={12} /> Boutique</Link>}>
+                    <NavDropdown trigger={<button className="landing-nav-link"><ShoppingBag size={12} /> Boutique</button>}>
                         <div className="dropdown-title">Acheter</div>
                         <Link to="/products" className="dropdown-link"><ShoppingBag size={14} /> <span>Catalogue Serveurs</span></Link>
                         <Link to="/pricing" className="dropdown-link"><Tag size={14} /> <span>Grille Tarifaire</span></Link>
@@ -79,28 +78,30 @@ export default function Landing() {
                     </NavDropdown>
 
                     {/* Mon Serveur */}
-                    <NavDropdown trigger={<Link to="/servers" className="landing-nav-link"><Server size={12} /> Mon Serveur</Link>}>
+                    <NavDropdown trigger={<button className="landing-nav-link"><Server size={12} /> Mon Serveur</button>}>
                         <div className="dropdown-title">Gestion</div>
                         <Link to="/servers" className="dropdown-link"><Layers size={14} /> <span>Mes Serveurs</span></Link>
                         <Link to="/dashboard" className="dropdown-link"><LayoutDashboard size={14} /> <span>Dashboard Live</span></Link>
                         <Link to="/settings" className="dropdown-link"><Settings size={14} /> <span>Paramètres</span></Link>
                         <div className="dropdown-title">Outils</div>
                         <Link to="/console" className="dropdown-link"><Terminal size={14} /> <span>Console RCON</span></Link>
-                        <Link to="/maps" className="dropdown-link"><Map size={14} /> <span>Maps & Plugins</span></Link>
+                        <Link to="/maps" className="dropdown-link"><Map size={14} /> <span>Maps &amp; Plugins</span></Link>
                     </NavDropdown>
 
                     {/* Ressources */}
-                    <NavDropdown trigger={<Link to="/docs" className="landing-nav-link"><BookOpen size={12} /> Ressources</Link>}>
+                    <NavDropdown trigger={<button className="landing-nav-link"><BookOpen size={12} /> Ressources</button>}>
+                        <div className="dropdown-title">Guides Jeu</div>
+                        <Link to="/guides" className="dropdown-link"><Gamepad2 size={14} /> <span>Guides TrackMania</span></Link>
+                        <Link to="/guides/trackmania-nations-forever-guide-debutant" className="dropdown-link"><Star size={14} /> <span>Guide Débutant TMNF</span></Link>
+                        <Link to="/guides/techniques-conduite-trackmania" className="dropdown-link"><ArrowRight size={14} /> <span>Techniques de conduite</span></Link>
+                        <Link to="/guides/trouver-telecharger-maps-tmnf" className="dropdown-link"><Map size={14} /> <span>Trouver des maps</span></Link>
                         <div className="dropdown-title">Documentation</div>
                         <Link to="/docs" className="dropdown-link"><BookOpen size={14} /> <span>Documentation Complète</span></Link>
                         <Link to="/docs/create-first-server" className="dropdown-link"><Server size={14} /> <span>Guide de Configuration</span></Link>
                         <Link to="/docs/rcon-commands" className="dropdown-link"><Terminal size={14} /> <span>Commandes RCON</span></Link>
                         <div className="dropdown-title">Communauté</div>
-                        <Link to="/blog" className="dropdown-link"><MessageSquare size={14} /> <span>Forum & Blog</span></Link>
-                        <Link to="/blog" className="dropdown-link"><FileText size={14} /> <span>Annonces & Changelog</span></Link>
-                        <div className="dropdown-title">Support</div>
+                        <Link to="/blog" className="dropdown-link"><MessageSquare size={14} /> <span>Forum &amp; Blog</span></Link>
                         <Link to="/support" className="dropdown-link"><HelpCircle size={14} /> <span>Ouvrir un Ticket</span></Link>
-                        <Link to="/docs" className="dropdown-link"><BookOpen size={14} /> <span>FAQ</span></Link>
                     </NavDropdown>
                 </div>
 
@@ -341,6 +342,7 @@ export default function Landing() {
                     <div>
                         <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--text-high)', fontWeight: 700, textTransform: 'uppercase', marginBottom: 16, letterSpacing: '0.05em' }}>Ressources</div>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                            <Link to="/guides" style={{ fontSize: 13, color: 'var(--text-mid)', textDecoration: 'none' }}>Guides TMNF</Link>
                             <Link to="/blog" style={{ fontSize: 13, color: 'var(--text-mid)', textDecoration: 'none' }}>Communauté</Link>
                             <Link to="/docs" style={{ fontSize: 13, color: 'var(--text-mid)', textDecoration: 'none' }}>Documentation</Link>
                             <Link to="/support" style={{ fontSize: 13, color: 'var(--text-mid)', textDecoration: 'none' }}>Support Client</Link>

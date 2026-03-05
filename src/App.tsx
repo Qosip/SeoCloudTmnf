@@ -4,7 +4,7 @@ import {
   LayoutDashboard, Terminal, Map, Settings, Server,
   Zap, ChevronRight, Activity, BookOpen, MessageSquare,
   Tag, ShoppingBag, LogOut, LogIn, UserPlus, Gift,
-  HelpCircle, Layers, ChevronDown
+  HelpCircle, Layers, ChevronDown, Gamepad2
 } from 'lucide-react'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 
@@ -32,6 +32,8 @@ import Register from './pages/Register'
 import Checkout from './pages/Checkout'
 import Servers from './pages/Servers'
 import Support from './pages/Support'
+import Guides from './pages/Guides'
+import GuideView from './pages/GuideView'
 
 import './index.css'
 import './App.css'
@@ -65,6 +67,7 @@ const NAV_GROUPS = [
     label: 'Ressources',
     authOnly: false,
     items: [
+      { to: '/guides', icon: Gamepad2, label: 'Guides TMNF' },
       { to: '/blog', icon: MessageSquare, label: 'Communauté' },
       { to: '/docs', icon: BookOpen, label: 'Documentation' },
       { to: '/support', icon: HelpCircle, label: 'Support' },
@@ -165,7 +168,7 @@ const PT: Record<string, string> = {
   '/servers': 'Mes Serveurs', '/dashboard': 'Dashboard', '/console': 'Console RCON',
   '/maps': 'Maps & Plugins', '/settings': 'Paramètres', '/pricing': 'Tarifs',
   '/products': 'Produits', '/promo': 'Promotions', '/blog': 'Communauté',
-  '/docs': 'Documentation', '/support': 'Support',
+  '/docs': 'Documentation', '/support': 'Support', '/guides': 'Guides TMNF',
 }
 
 function TopBar() {
@@ -231,6 +234,8 @@ function AppRoutes() {
         <Route index element={<DocsHub />} />
         <Route path=":slug" element={<ArticleView />} />
       </Route>
+      <Route path="/guides" element={<AppShell><Guides /></AppShell>} />
+      <Route path="/guides/:slug" element={<AppShell><GuideView /></AppShell>} />
       <Route path="/support" element={<AppShell><Support /></AppShell>} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
