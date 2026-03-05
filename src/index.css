@@ -1,0 +1,265 @@
+/* ─── TrackHost Design System ─────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600&display=swap');
+
+/* ─── Tokens ─────────────────────────────────────────────────────────────── */
+:root {
+  /* Color Palette */
+  --bg-void:       #080B0F;
+  --bg-base:       #0D1117;
+  --bg-surface:    #121923;
+  --bg-raised:     #1A2433;
+  --bg-hover:      #1E2B3E;
+
+  --border:        #1F2E44;
+  --border-bright: #2D4060;
+
+  --primary:       #00FF87;      /* neon green — accent/active */
+  --primary-dim:   #00C86820;   /* green glow bg */
+  --primary-glow:  0 0 12px #00FF8760, 0 0 24px #00FF8730;
+
+  --cyan:          #00D4FF;      /* cyan — secondary accent */
+  --cyan-dim:      #00D4FF15;
+  --cyan-glow:     0 0 10px #00D4FF50;
+
+  --red:           #FF3B5C;
+  --orange:        #FF8C00;
+  --yellow:        #FFD700;
+
+  --text-high:     #E8EDF5;
+  --text-mid:      #8A9BB5;
+  --text-low:      #4A5A72;
+  --text-ghost:    #2A3A52;
+
+  /* Typography */
+  --font-display:  'Rajdhani', sans-serif;
+  --font-body:     'Outfit', sans-serif;
+  --font-mono:     'JetBrains Mono', monospace;
+
+  /* Spacing */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  32px;
+  --space-7:  48px;
+  --space-8:  64px;
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Sidebar */
+  --sidebar-w: 240px;
+  --topbar-h:  56px;
+
+  /* Transitions */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition: 200ms var(--ease);
+}
+
+/* ─── Reset ──────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-high);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-low); }
+
+/* ─── Typography Utilities ───────────────────────────────────────────────── */
+.font-display { font-family: var(--font-display); }
+.font-mono    { font-family: var(--font-mono); }
+
+/* ─── Speed Stripe Decoration ───────────────────────────────────────────── */
+.speed-stripe {
+  position: relative;
+  overflow: hidden;
+}
+.speed-stripe::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -55deg,
+    transparent,
+    transparent 12px,
+    rgba(0, 255, 135, 0.03) 12px,
+    rgba(0, 255, 135, 0.03) 14px
+  );
+  pointer-events: none;
+}
+
+/* ─── Card Base ──────────────────────────────────────────────────────────── */
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+
+/* ─── Tag / Badge ────────────────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 2px 10px;
+  border-radius: 99px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.badge-green { background: var(--primary-dim); color: var(--primary); border: 1px solid #00FF8730; }
+.badge-red   { background: #FF3B5C20; color: var(--red); border: 1px solid #FF3B5C30; }
+.badge-cyan  { background: var(--cyan-dim); color: var(--cyan); border: 1px solid #00D4FF30; }
+.badge-gray  { background: var(--bg-raised); color: var(--text-mid); border: 1px solid var(--border); }
+
+/* ─── Button Base ────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: none;
+  text-decoration: none;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--primary);
+  color: #020805;
+  box-shadow: var(--primary-glow);
+}
+.btn-primary:hover {
+  background: #20FFA0;
+  box-shadow: 0 0 20px #00FF8790, 0 0 40px #00FF8750;
+  transform: translateY(-1px);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+.btn-outline:hover {
+  background: var(--primary-dim);
+  box-shadow: var(--primary-glow);
+}
+.btn-ghost {
+  background: var(--bg-raised);
+  color: var(--text-mid);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover {
+  background: var(--bg-hover);
+  color: var(--text-high);
+  border-color: var(--border-bright);
+}
+.btn-danger {
+  background: #FF3B5C20;
+  color: var(--red);
+  border: 1px solid #FF3B5C40;
+}
+.btn-danger:hover {
+  background: #FF3B5C35;
+}
+
+/* ─── Stat Number ────────────────────────────────────────────────────────── */
+.stat-value {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-high);
+  line-height: 1;
+}
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-low);
+}
+
+/* ─── Divider ────────────────────────────────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: var(--space-4) 0;
+}
+
+/* ─── Heartbeat Pulse Animation ─────────────────────────────────────────── */
+@keyframes pulse-ring {
+  0%   { transform: scale(0.8); opacity: 1; }
+  70%  { transform: scale(1.6); opacity: 0; }
+  100% { transform: scale(0.8); opacity: 0; }
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.6; }
+}
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slide-in-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: var(--primary-glow); }
+  50%       { box-shadow: 0 0 6px #00FF8730; }
+}
+
+/* ─── Input ──────────────────────────────────────────────────────────────── */
+.input {
+  background: var(--bg-void);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-high);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 8px 12px;
+  outline: none;
+  transition: border-color var(--transition);
+  width: 100%;
+}
+.input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary-dim);
+}
+.input::placeholder { color: var(--text-low); }
