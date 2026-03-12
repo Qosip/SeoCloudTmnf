@@ -9,6 +9,7 @@ import {
     BarChart2, LayoutGrid, FileText
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import SEO from '../components/SEO'
 
 /* ─── Live Data Simulation ────────────────────────────────────────────────── */
 function rng(min: number, max: number) { return Math.floor(Math.random() * (max - min + 1)) + min }
@@ -129,7 +130,7 @@ export default function Dashboard() {
     const [avgPing, setAvgPing] = useState(24)
     const [cpuPct, setCpuPct] = useState(28)
     const [ramMb, setRamMb] = useState(245)
-    const [uptime, setUptime] = useState(99.8)
+    const uptime = 99.8
     const [records, setRecords] = useState(7)
     const [currentMap, setCurrentMap] = useState(0)
     const [mapTimer, setMapTimer] = useState(420)
@@ -238,6 +239,11 @@ export default function Dashboard() {
 
     return (
         <>
+            <SEO 
+                title="Tableau de bord - Live Monitoring" 
+                description="Suivez les performances de votre serveur TrackMania en temps réel : joueurs, CPU, RAM et logs."
+                noindex
+            />
             {kickTarget && <KickModal player={kickTarget} onClose={() => setKickTarget(null)} />}
 
             <div className="page-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 16 }}>

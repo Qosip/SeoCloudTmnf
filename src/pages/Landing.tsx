@@ -6,6 +6,8 @@ import {
     Check, Users, Cpu, Activity, Clock, HelpCircle, LayoutDashboard, Layers,
     BarChart3, Settings, Gamepad2
 } from 'lucide-react'
+import JsonLd from '../components/JsonLd'
+import SEO from '../components/SEO'
 import './pages.css'
 
 /* ─── Data ──────────────────────────────────────────────────────────────── */
@@ -57,6 +59,25 @@ function NavDropdown({ trigger, children }: { trigger: React.ReactNode; children
 export default function Landing() {
     return (
         <div className="landing">
+            <SEO 
+                title="Hébergement Serveur TrackMania Nations Forever" 
+                description="La plateforme de référence pour l'hébergement de serveurs TMNF. Déploiement instantané, interface intuitive et support expert. Créez votre serveur en 60 secondes."
+            />
+            <JsonLd data={{
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "name": "TrackHost",
+                "url": "https://www.trackhost.gg",
+                "description": "La plateforme de référence pour l'hébergement de serveurs TrackMania Nations Forever.",
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "TrackHost, Inc.",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.trackhost.gg/assets/logo.png"
+                    }
+                }
+            }} />
 
             {/* ── Top Nav ── */}
             <nav className="landing-nav" style={{ overflow: 'visible' }}>

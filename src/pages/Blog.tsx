@@ -5,6 +5,8 @@ import {
     Award, Hash, Activity, ArrowLeft, Send
 } from 'lucide-react'
 import { motion } from 'framer-motion'
+import JsonLd from '../components/JsonLd'
+import SEO from '../components/SEO'
 
 /* ─── Data ──────────────────────────────────────────────────────────────── */
 type Reply = { id: string; author: string; avatar: string; date: string; content: string; likes: number }
@@ -156,6 +158,29 @@ function BlogPostView() {
             transition={{ duration: 0.25 }}
             style={{ maxWidth: 800, margin: '0 auto', paddingBottom: 64 }}
         >
+            <SEO 
+                title={post.title} 
+                description={post.content.slice(0, 160) + '...'}
+            />
+            <JsonLd data={{
+                "@context": "https://schema.org",
+                "@type": "BlogPosting",
+                "headline": post.title,
+                "author": {
+                    "@type": "Person",
+                    "name": post.author
+                },
+                "datePublished": post.date,
+                "articleBody": post.content,
+                "comment": post.messages.map(m => ({
+                    "@type": "Comment",
+                    "text": m.content,
+                    "author": {
+                        "@type": "Person",
+                        "name": m.author
+                    }
+                }))
+            }} />
             <Link to="/blog" className="btn btn-ghost" style={{ marginBottom: 24, fontSize: 13 }}>
                 <ArrowLeft size={16} /> Retour au forum
             </Link>
@@ -229,6 +254,26 @@ function BlogList() {
 
     return (
         <div style={{ maxWidth: 1100, margin: '0 auto', paddingBottom: 64 }} className="blog-page">
+            <SEO 
+                title="Espace Communautaire" 
+                description="Rejoignez la communauté TrackHost. Participez aux discussions, trouvez des tournois et partagez vos impressions sur TrackMania Nations Forever."
+            />
+            <JsonLd data={{
+                "@context": "https://schema.org",
+                "@type": "Blog",
+                "name": "Espace Communautaire TrackHost",
+                "description": "Posez vos questions, trouvez des joueurs, partagez vos circuits et participez aux événements communautaires.",
+                "blogPost": POSTS.map(p => ({
+                    "@type": "BlogPosting",
+                    "headline": p.title,
+                    "url": `https://www.trackhost.gg/blog/${p.slug}`,
+                    "datePublished": p.date, 
+                    "author": {
+                        "@type": "Person",
+                        "name": p.author
+                    }
+                }))
+            }} />
             {/* ── Header ── */}
             <div className="page-header" style={{ padding: '48px 0', borderBottom: '1px solid var(--border)', marginBottom: 32, display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
                 <div>

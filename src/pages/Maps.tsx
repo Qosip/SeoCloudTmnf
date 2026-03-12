@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Upload, Download, Trash2, Play, Package, Settings2, CheckCircle2 } from 'lucide-react'
+import SEO from '../components/SEO'
 
 interface GameMap { name: string; author: string; uid: string; active: boolean }
 
@@ -27,6 +28,11 @@ export default function Maps() {
 
     return (
         <>
+            <SEO 
+                title="Gestion des Maps & Plugins" 
+                description="Gérez votre bibliothèque de maps, installez des plugins (XAseco, ManiaLive) et configurez votre serveur dédié."
+                noindex
+            />
             <div className="page-header">
                 <h1 className="page-title">Maps & Plugins</h1>
                 <p className="page-subtitle">Gérez votre bibliothèque, plugins et configuration</p>

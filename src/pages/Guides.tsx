@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import { BookOpen, ChevronRight, Clock, Target, Map, Trophy, Flame, Gamepad2, Star, ArrowRight } from 'lucide-react'
+import JsonLd from '../components/JsonLd'
+import SEO from '../components/SEO'
 
 export const GUIDES = [
     {
@@ -67,6 +69,25 @@ export const GUIDES = [
 export default function Guides() {
     return (
         <div style={{ maxWidth: 1100, margin: '0 auto', paddingBottom: 64 }}>
+            <SEO 
+                title="Guides TrackMania Nations Forever" 
+                description="Apprenez les techniques de conduite, découvrez les surfaces et progressez sur TMNF avec nos guides détaillés pour tous les niveaux."
+            />
+            <JsonLd data={{
+                "@context": "https://schema.org",
+                "@type": "CollectionPage",
+                "name": "Guides TrackMania Nations Forever",
+                "description": "Tutoriels, techniques et conseils pour progresser sur TMNF — du premier lancement jusqu'aux records de compétition.",
+                "mainEntity": {
+                    "@type": "ItemList",
+                    "itemListElement": GUIDES.map((g, i) => ({
+                        "@type": "ListItem",
+                        "position": i + 1,
+                        "url": `https://www.trackhost.gg/guides/${g.slug}`,
+                        "name": g.title
+                    }))
+                }
+            }} />
             {/* Header */}
             <div style={{ padding: '48px 0 40px', borderBottom: '1px solid var(--border)', marginBottom: 40 }}>
                 <div className="badge badge-cyan" style={{ marginBottom: 16 }}>

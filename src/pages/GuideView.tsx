@@ -1,6 +1,8 @@
 import { Link, useParams } from 'react-router-dom'
 import { ArrowLeft, Clock, ChevronRight, BookOpen } from 'lucide-react'
 import { GUIDES } from './Guides'
+import JsonLd from '../components/JsonLd'
+import SEO from '../components/SEO'
 
 /* ─── Guide HTML Content ─────────────────────────────────────────────────── */
 const GUIDE_HTML: Record<string, string> = {
@@ -294,6 +296,21 @@ export default function GuideView() {
 
     return (
         <div style={{ maxWidth: 1100, margin: '0 auto', paddingBottom: 64 }}>
+            <SEO 
+                title={guide.title} 
+                description={guide.desc}
+            />
+            <JsonLd data={{
+                "@context": "https://schema.org",
+                "@type": "Article",
+                "headline": guide.title,
+                "description": guide.desc,
+                "articleBody": content.replace(/<[^>]*>/g, ''),
+                "author": {
+                    "@type": "Organization",
+                    "name": "TrackHost"
+                }
+            }} />
             {/* Breadcrumb */}
             <nav aria-label="Breadcrumb" style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 24, fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--text-low)' }}>
                 <Link to="/" style={{ color: 'var(--text-low)', textDecoration: 'none' }}>TrackHost</Link>

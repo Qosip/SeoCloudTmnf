@@ -2,8 +2,10 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {
     MessageCircle, Mail, Book, ChevronRight, Send, Check,
-    Zap, Clock, Phone, Badge, AlertCircle, HelpCircle, FileText, Wrench
+    Zap, Clock, HelpCircle, FileText
 } from 'lucide-react'
+import JsonLd from '../components/JsonLd'
+import SEO from '../components/SEO'
 
 const TICKET_TYPES = ['Problème technique', 'Facturation', 'Compte', 'Performance serveur', 'Autre']
 const FAQS = [
@@ -31,6 +33,34 @@ export default function Support() {
 
     return (
         <>
+            <SEO 
+                title="Support et Assistance" 
+                description="Besoin d'aide pour votre serveur ? Consultez notre FAQ ou ouvrez un ticket de support. Notre équipe d'experts est disponible pour vous répondre rapidement."
+            />
+            <JsonLd data={{
+                "@context": "https://schema.org",
+                "@type": "ContactPage",
+                "name": "Support TrackHost",
+                "description": "Nous sommes là pour vous aider · Réponse sous 24h (Pro) · 2h (Elite).",
+                "mainEntity": {
+                    "@type": "ContactPoint",
+                    "contactType": "customer support",
+                    "email": "support@trackhost.gg",
+                    "url": "https://www.trackhost.gg/support"
+                }
+            }} />
+            <JsonLd data={{
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": FAQS.map(f => ({
+                    "@type": "Question",
+                    "name": f.q,
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": f.a
+                    }
+                }))
+            }} />
             <div className="page-header">
                 <h1 className="page-title">Support</h1>
                 <p className="page-subtitle">Nous sommes là pour vous aider · Réponse sous 24h (Pro) · 2h (Elite)</p>

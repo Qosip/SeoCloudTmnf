@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Clock, Tag, Zap, Star, Copy, Check, TrendingDown, Gift, ArrowRight } from 'lucide-react'
+import JsonLd from '../components/JsonLd'
+import SEO from '../components/SEO'
 
 const PROMOS = [
     {
@@ -135,6 +137,27 @@ function PromoCard({ promo }: { promo: typeof PROMOS[0] }) {
 export default function Promo() {
     return (
         <div className="pricing-page">
+            <SEO 
+                title="Offres et Promotions" 
+                description="Économisez sur votre hébergement TrackMania. Profitez de nos codes promos, offres de lancement et remises saisonnières sur tous nos plans."
+            />
+            <JsonLd data={{
+                "@context": "https://schema.org",
+                "@type": "ItemList",
+                "name": "Offres et Promotions TrackHost",
+                "description": "Codes promos, packs saisonniers, offres exclusives pour serveurs TrackMania.",
+                "itemListElement": PROMOS.map((p, i) => ({
+                    "@type": "ListItem",
+                    "position": i + 1,
+                    "item": {
+                        "@type": "SpecialAnnouncement",
+                        "name": p.title,
+                        "description": p.desc,
+                        "datePosted": "2026-01-01",
+                        "expires": p.expires === 'Permanent' ? "2099-12-31" : p.expires
+                    }
+                }))
+            }} />
             <div className="pricing-header">
                 <div className="badge badge-green" style={{ marginBottom: 16 }}>
                     <Gift size={11} /> Offres & Promotions

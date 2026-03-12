@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Zap, Eye, EyeOff, ArrowRight, Check } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
+import SEO from '../components/SEO'
 
 const STRENGTH = ['', 'Faible', 'Moyen', 'Fort', 'Excellent']
 const STRENGTH_COLOR = ['', 'var(--red)', 'var(--orange)', 'var(--yellow)', 'var(--primary)']
@@ -43,6 +44,11 @@ export default function Register() {
 
     return (
         <div className="auth-page">
+            <SEO 
+                title="Créer un compte" 
+                description="Rejoignez TrackHost et créez votre serveur TrackMania Nations Forever en quelques secondes."
+                noindex
+            />
             <div className="auth-bg-glow" />
             <div className="auth-card">
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 32 }}>

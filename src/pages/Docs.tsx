@@ -3,6 +3,8 @@ import {
     BookOpen, Terminal, Zap, Search, ChevronRight,
     Play, Settings, AlertCircle, Map
 } from 'lucide-react'
+import JsonLd from '../components/JsonLd'
+import SEO from '../components/SEO'
 
 /* ─── Data ──────────────────────────────────────────────────────────────── */
 const CATEGORIES = [
@@ -370,6 +372,25 @@ En cas d'attaque ou de trafic anormal, contactez le support TrackHost. Nous disp
 export function DocsHub() {
     return (
         <div className="docs-hub">
+            <SEO 
+                title="Documentation Technique" 
+                description="Consultez notre documentation complète pour configurer et optimiser votre serveur TrackMania Nations Forever. Guides RCON, XAseco et configuration avancée."
+            />
+            <JsonLd data={{
+                "@context": "https://schema.org",
+                "@type": "CollectionPage",
+                "name": "Documentation TrackHost",
+                "description": "Tout ce qu'il faut savoir pour configurer, administrer et comprendre l'écosystème TrackMania Dedicated Server.",
+                "mainEntity": {
+                    "@type": "ItemList",
+                    "itemListElement": CATEGORIES.map((cat, i) => ({
+                        "@type": "ListItem",
+                        "position": i + 1,
+                        "name": cat.label,
+                        "description": cat.desc
+                    }))
+                }
+            }} />
             <header className="docs-hub-header">
                 <div className="badge badge-cyan" style={{ marginBottom: 16 }}><BookOpen size={10} style={{ marginRight: 4 }} /> Docs & Manuels</div>
                 <h1 className="docs-hub-title">Documentation TrackHost</h1>
@@ -430,6 +451,21 @@ export function ArticleView() {
 
     return (
         <div style={{ display: 'flex', gap: 48, maxWidth: 1200, margin: '0 auto', padding: '0 24px 48px' }}>
+            <SEO 
+                title={article.title} 
+                description={article.desc}
+            />
+            <JsonLd data={{
+                "@context": "https://schema.org",
+                "@type": "TechArticle",
+                "headline": article.title,
+                "description": article.desc,
+                "articleBody": article.content,
+                "author": {
+                    "@type": "Organization",
+                    "name": "TrackHost"
+                }
+            }} />
             <aside className="docs-article-sidebar">
                 <Link to="/docs" className="btn btn-ghost sidebar-back" style={{ fontSize: 13 }}>
                     <ChevronRight size={16} style={{ transform: 'rotate(180deg)' }} /> Retour

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { Zap, Eye, EyeOff, ArrowRight, Check } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
+import SEO from '../components/SEO'
 
 export default function Login() {
     const { login } = useAuth()
@@ -25,6 +26,11 @@ export default function Login() {
 
     return (
         <div className="auth-page">
+            <SEO 
+                title="Connexion" 
+                description="Connectez-vous à votre interface de gestion TrackHost."
+                noindex
+            />
             <div className="auth-bg-glow" />
             <div className="auth-card">
                 {/* Logo */}

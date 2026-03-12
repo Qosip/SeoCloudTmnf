@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Star, Filter, Search, ChevronRight, Zap, Shield, ArrowRight, Clock, Users } from 'lucide-react'
+import JsonLd from '../components/JsonLd'
+import SEO from '../components/SEO'
 
 const PRODUCTS = [
     {
@@ -97,6 +99,38 @@ export default function Products() {
 
     return (
         <>
+            <SEO 
+                title="Produits et Solutions d'Hébergement" 
+                description="Explorez notre catalogue de serveurs TrackMania Nations Forever. Solutions managées pour joueurs, streamers et clubs eSport. Qualité premium garantie."
+            />
+            <JsonLd data={{
+                "@context": "https://schema.org",
+                "@type": "CollectionPage",
+                "name": "Nos Produits TrackHost",
+                "description": "Serveurs TMNF managés · Configuration instantanée · Pas de compétences requises.",
+                "mainEntity": {
+                    "@type": "ItemList",
+                    "itemListElement": PRODUCTS.map((p, i) => ({
+                        "@type": "ListItem",
+                        "position": i + 1,
+                        "item": {
+                            "@type": "Product",
+                            "name": p.name,
+                            "description": p.desc,
+                            "offers": {
+                                "@type": "Offer",
+                                "price": p.price.toFixed(2),
+                                "priceCurrency": "EUR"
+                            },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": p.stars,
+                                "reviewCount": p.reviews
+                            }
+                        }
+                    }))
+                }
+            }} />
             <div className="page-header">
                 <h1 className="page-title">Nos Produits</h1>
                 <p className="page-subtitle">Serveurs TMNF managés · Configuration instantanée · Pas de compétences requises</p>

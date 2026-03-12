@@ -1,4 +1,5 @@
 import { User, Key, Globe, Bell, Save } from 'lucide-react'
+import SEO from '../components/SEO'
 
 const SECTIONS = [
     {
@@ -38,6 +39,11 @@ const SECTIONS = [
 export default function Settings() {
     return (
         <>
+            <SEO 
+                title="Paramètres du Compte" 
+                description="Gérez vos informations personnelles, votre sécurité et vos préférences de notification."
+                noindex
+            />
             <div className="page-header">
                 <h1 className="page-title">Paramètres</h1>
                 <p className="page-subtitle">Compte, sécurité, serveur et notifications</p>

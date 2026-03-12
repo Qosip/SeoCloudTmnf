@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Zap, Lock, Check, ChevronRight, Shield, Plus, Minus, ArrowRight, Server, Globe, Key, Users as UsersIcon, Cpu, Database } from 'lucide-react'
+import SEO from '../components/SEO'
 
 /* ─── Shared Data (mirrors Products page) ────────────────────────────────── */
 const PLANS = [
@@ -140,6 +141,11 @@ export default function Checkout() {
 
     return (
         <div className="auth-page" style={{ alignItems: 'flex-start', paddingTop: 32, paddingBottom: 48 }}>
+            <SEO 
+                title="Configuration & Paiement" 
+                description="Configurez votre serveur, choisissez vos options et finalisez votre commande en toute sécurité."
+                noindex
+            />
             <div className="auth-bg-glow" />
             <div style={{ width: '100%', maxWidth: 980, margin: '0 auto', padding: '0 24px' }}>
 

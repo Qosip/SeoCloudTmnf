@@ -4,6 +4,7 @@ import {
     Plus, Server, Activity, Users, Cpu, Wifi, Play, Square, RotateCcw,
     Terminal, Settings, ChevronRight, Zap, Clock, Map, ExternalLink
 } from 'lucide-react'
+import SEO from '../components/SEO'
 
 /* ─── Types ──────────────────────────────────────────────────────────────── */
 interface GameServer {
@@ -219,6 +220,11 @@ export default function Servers() {
 
     return (
         <>
+            <SEO 
+                title="Tableau de bord - Mes Serveurs" 
+                description="Gérez vos serveurs TrackMania Nations Forever depuis votre espace personnel."
+                noindex
+            />
             <div className="page-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <div>
                     <h1 className="page-title">Mes Serveurs</h1>

@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Check, Zap, Shield, Star, Plus, Minus, ChevronRight, HelpCircle } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import JsonLd from '../components/JsonLd'
+import SEO from '../components/SEO'
 
 /* ─── Data ────────────────────────────────────────────────────────────────── */
 const PLANS = [
@@ -131,6 +133,39 @@ export default function Pricing() {
 
     return (
         <div className="pricing-page">
+            <SEO 
+                title="Tarifs et Abonnements" 
+                description="Découvrez nos plans d'hébergement pour serveurs TrackMania Nations Forever. Starter, Pro ou Elite : choisissez la solution adaptée à vos besoins à partir de 4.99€/mois."
+            />
+            <JsonLd data={{
+                "@context": "https://schema.org",
+                "@type": "Product",
+                "name": "Hébergement Serveur TrackMania",
+                "description": "Serveurs haute performance pour TrackMania Nations Forever.",
+                "brand": {
+                    "@type": "Brand",
+                    "name": "TrackHost"
+                },
+                "offers": PLANS.map(plan => ({
+                    "@type": "Offer",
+                    "name": plan.name,
+                    "price": (plan.price * disc).toFixed(2),
+                    "priceCurrency": "EUR",
+                    "url": "https://www.trackhost.gg/pricing"
+                }))
+            }} />
+            <JsonLd data={{
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": FAQ.map(f => ({
+                    "@type": "Question",
+                    "name": f.q,
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": f.a
+                    }
+                }))
+            }} />
             {/* ── Header ── */}
             <div className="pricing-header">
                 <div className="badge badge-green" style={{ marginBottom: 16 }}>Tarifs transparents · Sans engagement</div>

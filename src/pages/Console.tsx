@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { Terminal, Send, Trash2, ChevronRight, Download, Copy } from 'lucide-react'
+import SEO from '../components/SEO'
 
 /* ─── Types ──────────────────────────────────────────────────────────────── */
 interface LogLine {
@@ -308,6 +309,11 @@ export default function Console() {
 
     return (
         <>
+            <SEO 
+                title="Console RCON - Administration" 
+                description="Contrôlez votre serveur TrackMania via la console RCON : commandes, kick, ban et monitoring des logs en direct."
+                noindex
+            />
             <div className="page-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <div>
                     <h1 className="page-title">Console RCON</h1>
