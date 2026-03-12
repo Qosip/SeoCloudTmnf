@@ -8,10 +8,9 @@ interface SEOProps {
   noindex?: boolean;
 }
 
-export default function SEO({ title, description, canonicalPath }: SEOProps) {
+export default function SEO({ title, description, canonicalPath, noindex }: SEOProps) {
   const location = useLocation();
-  // We use VITE_SITE_URL if defined (useful for local SEO scans), otherwise fallback to the production domain.
-  const domain = import.meta.env.VITE_SITE_URL || 'https://www.trackhost.gg';
+  const domain = 'https://www.trackhost.gg';
   const url = domain + (canonicalPath || location.pathname);
 
   // Truncate title logic (60 chars max usually)
@@ -26,6 +25,7 @@ export default function SEO({ title, description, canonicalPath }: SEOProps) {
       <title>{finalTitle}</title>
       <meta name="description" content={finalDesc} />
       <link rel="canonical" href={url} />
+      {noindex && <meta name="robots" content="noindex, nofollow" />}
 
       <meta property="og:title" content={finalTitle} />
       <meta property="og:description" content={finalDesc} />
