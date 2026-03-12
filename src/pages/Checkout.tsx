@@ -205,7 +205,7 @@ export default function Checkout() {
                             {/* ── STEP 1: Plan ── */}
                             {step === 1 && (
                                 <div>
-                                    <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 20, fontWeight: 700, color: 'var(--text-high)', marginBottom: 16 }}>Choisissez votre plan</h2>
+                                    <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 20, fontWeight: 700, color: 'var(--text-high)', marginBottom: 16 }}>Choisissez votre plan</h1>
 
                                     <div className="billing-toggle" style={{ marginBottom: 20 }}>
                                         <button className={`bill-btn ${billing === 'monthly' ? 'active' : ''}`} onClick={() => setBilling('monthly')}>Mensuel</button>

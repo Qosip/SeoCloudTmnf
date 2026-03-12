@@ -41,8 +41,10 @@ export default function Login() {
                 <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 28, fontWeight: 700, color: 'var(--text-high)', marginBottom: 6 }}>
                     Bon retour.
                 </h1>
-                <p style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--text-low)', marginBottom: 28 }}>
-                    Connectez-vous à votre compte
+                <p style={{ fontSize: 13, color: 'var(--text-mid)', marginBottom: 20, lineHeight: 1.6 }}>
+                    Connectez-vous à votre espace TrackHost pour gérer vos serveurs TrackMania Nations Forever. 
+                    Accédez aux statistiques en temps réel, configurez vos plugins (XAseco, Dedimania), 
+                    et gagnez un contrôle total sur l'expérience de vos joueurs.
                 </p>
 
                 {/* Demo hint */}

@@ -58,8 +58,11 @@ export default function Register() {
                 <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 28, fontWeight: 700, color: 'var(--text-high)', marginBottom: 6 }}>
                     Créez votre compte.
                 </h1>
-                <p style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--text-low)', marginBottom: 28 }}>
-                    Serveur actif en moins de 60 secondes
+                <p style={{ fontSize: 13, color: 'var(--text-mid)', marginBottom: 28, lineHeight: 1.6 }}>
+                    Rejoignez des milliers de joueurs sur TrackHost et lancez votre propre serveur 
+                    TrackMania Nations Forever (TMNF) en moins de 60 secondes. Profitez d'une 
+                    installation automatisée des maps, gestion des droits administrateur RCON, 
+                    sans aucune configuration compliquée de votre côté.
                 </p>
 
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
