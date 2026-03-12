@@ -206,14 +206,13 @@ function AppShell({ children }: { children: React.ReactNode }) {
       <Sidebar />
       <div className="main-col">
         <TopBar />
-        <main className="main-content">{children}</main>
+        <div className="main-content">{children}</div>
       </div>
     </div>
   )
 }
 
 import type { RouteRecord } from 'vite-react-ssg'
-
 import { GUIDES } from './pages/Guides'
 import { ARTICLES } from './pages/Docs'
 
@@ -270,5 +269,5 @@ export const routes: RouteRecord[] = [
 ]
 
 export default function App() {
-  return null
+  return null;
 }
