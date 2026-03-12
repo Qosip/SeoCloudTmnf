@@ -279,7 +279,7 @@ const GUIDE_HTML: Record<string, string> = {
 export default function GuideView() {
     const { slug } = useParams<{ slug: string }>()
     const guide = GUIDES.find(g => g.slug === slug)
-    const content = slug ? GUIDE_HTML[slug] : null
+    const content = slug && GUIDE_HTML[slug] ? GUIDE_HTML[slug].replace(/<h1>.*?<\/h1>\n?/gi, '') : null
 
     const related = GUIDES.filter(g => g.slug !== slug).slice(0, 3)
 
@@ -296,8 +296,8 @@ export default function GuideView() {
 
     return (
         <div style={{ maxWidth: 1100, margin: '0 auto', paddingBottom: 64 }}>
-            <SEO 
-                title={guide.title} 
+            <SEO
+                title={guide.title}
                 description={guide.desc}
             />
             <JsonLd data={{

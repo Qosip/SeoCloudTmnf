@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BrowserRouter, Routes, Route, NavLink, useLocation, Link, Navigate, Outlet } from 'react-router-dom'
+import { NavLink, useLocation, Link, Navigate, Outlet } from 'react-router-dom'
 import {
   LayoutDashboard, Terminal, Map, Settings, Server,
   Zap, ChevronRight, Activity, BookOpen, MessageSquare,
@@ -210,44 +210,67 @@ function AppShell({ children }: { children: React.ReactNode }) {
   )
 }
 
-/* ─── Router ──────────────────────────────────────────────────────────────── */
-function AppRoutes() {
-  return (
-    <Routes>
-      {/* Full-page (no shell) */}
-      <Route path="/" element={<Landing />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/checkout" element={<Checkout />} />
+import type { RouteRecord } from 'vite-react-ssg'
 
-      {/* Shell pages */}
-      <Route path="/servers" element={<ProtectedRoute><AppShell><Servers /></AppShell></ProtectedRoute>} />
-      <Route path="/dashboard" element={<ProtectedRoute><AppShell><Dashboard /></AppShell></ProtectedRoute>} />
-      <Route path="/console" element={<ProtectedRoute><AppShell><Console /></AppShell></ProtectedRoute>} />
-      <Route path="/maps" element={<ProtectedRoute><AppShell><Maps /></AppShell></ProtectedRoute>} />
-      <Route path="/settings" element={<ProtectedRoute><AppShell><SettingsPage /></AppShell></ProtectedRoute>} />
-      <Route path="/pricing" element={<AppShell><Pricing /></AppShell>} />
-      <Route path="/products" element={<AppShell><Products /></AppShell>} />
-      <Route path="/promotions" element={<AppShell><Promo /></AppShell>} />
-      <Route path="/blog/*" element={<AppShell><Blog /></AppShell>} />
-      <Route path="/docs" element={<AppShell><Docs /></AppShell>}>
-        <Route index element={<DocsHub />} />
-        <Route path=":slug" element={<ArticleView />} />
-      </Route>
-      <Route path="/guides" element={<AppShell><Guides /></AppShell>} />
-      <Route path="/guides/:slug" element={<AppShell><GuideView /></AppShell>} />
-      <Route path="/support" element={<AppShell><Support /></AppShell>} />
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
-  )
-}
+import { GUIDES } from './pages/Guides'
+import { ARTICLES } from './pages/Docs'
+
+import { HelmetProvider } from 'react-helmet-async'
+
+/* ─── Router ──────────────────────────────────────────────────────────────── */
+export const routes: RouteRecord[] = [
+  {
+    path: '/',
+    element: (
+      <HelmetProvider>
+        <AuthProvider>
+          <Outlet />
+        </AuthProvider>
+      </HelmetProvider>
+    ),
+    children: [
+      /* Full-page (no shell) */
+      { index: true, element: <Landing /> },
+      { path: 'login', element: <Login /> },
+      { path: 'register', element: <Register /> },
+      { path: 'checkout', element: <Checkout /> },
+
+      /* Shell pages */
+      { path: 'servers', element: <ProtectedRoute><AppShell><Servers /></AppShell></ProtectedRoute> },
+      { path: 'dashboard', element: <ProtectedRoute><AppShell><Dashboard /></AppShell></ProtectedRoute> },
+      { path: 'console', element: <ProtectedRoute><AppShell><Console /></AppShell></ProtectedRoute> },
+      { path: 'maps', element: <ProtectedRoute><AppShell><Maps /></AppShell></ProtectedRoute> },
+      { path: 'settings', element: <ProtectedRoute><AppShell><SettingsPage /></AppShell></ProtectedRoute> },
+      { path: 'pricing', element: <AppShell><Pricing /></AppShell> },
+      { path: 'products', element: <AppShell><Products /></AppShell> },
+      { path: 'promotions', element: <AppShell><Promo /></AppShell> },
+      { path: 'blog/*', element: <AppShell><Blog /></AppShell> },
+      {
+        path: 'docs',
+        element: <AppShell><Docs /></AppShell>,
+        children: [
+          { index: true, element: <DocsHub /> },
+          {
+            path: ':slug',
+            element: <ArticleView />,
+            getStaticPaths: () => Object.values(ARTICLES).flat().map(a => 'docs/' + a.slug)
+          },
+        ]
+      },
+      { path: 'guides', element: <AppShell><Guides /></AppShell> },
+      {
+        path: 'guides/:slug',
+        element: <AppShell><GuideView /></AppShell>,
+        getStaticPaths: () => GUIDES.map(g => 'guides/' + g.slug)
+      },
+      { path: 'support', element: <AppShell><Support /></AppShell> },
+
+      /* 404 Redirect */
+      { path: '*', element: <Navigate to="/" replace /> }
+    ]
+  }
+]
 
 export default function App() {
-  return (
-    <AuthProvider>
-      <BrowserRouter>
-        <AppRoutes />
-      </BrowserRouter>
-    </AuthProvider>
-  )
+  return null
 }

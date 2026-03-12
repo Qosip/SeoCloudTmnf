@@ -2,7 +2,7 @@ import { useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import {
     Zap, Server, Terminal, Map, BarChart2, ChevronRight, ArrowRight,
-    Shield, Star, BookOpen, MessageSquare, Tag, Gift, ShoppingBag, LogIn,
+    Star, BookOpen, MessageSquare, Tag, Gift, ShoppingBag, LogIn,
     Check, Users, Cpu, Activity, Clock, HelpCircle, LayoutDashboard, Layers,
     BarChart3, Settings, Gamepad2
 } from 'lucide-react'
@@ -59,8 +59,8 @@ function NavDropdown({ trigger, children }: { trigger: React.ReactNode; children
 export default function Landing() {
     return (
         <div className="landing">
-            <SEO 
-                title="Hébergement Serveur TrackMania Nations Forever" 
+            <SEO
+                title="Hébergement Serveur TrackMania Nations Forever"
                 description="La plateforme de référence pour l'hébergement de serveurs TMNF. Déploiement instantané, interface intuitive et support expert. Créez votre serveur en 60 secondes."
             />
             <JsonLd data={{

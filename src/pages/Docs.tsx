@@ -16,7 +16,7 @@ const CATEGORIES = [
     { id: 'troubleshooting', label: 'Résolution de problèmes', icon: AlertCircle, desc: 'Solutions aux erreurs courantes (ports fermés, serveur invisible).' },
 ]
 
-const ARTICLES = {
+export const ARTICLES: Record<string, { slug: string; title: string; time: string; desc: string; content: string }[]> = {
     'getting-started': [
         {
             slug: 'create-first-server',
@@ -372,8 +372,8 @@ En cas d'attaque ou de trafic anormal, contactez le support TrackHost. Nous disp
 export function DocsHub() {
     return (
         <div className="docs-hub">
-            <SEO 
-                title="Documentation Technique" 
+            <SEO
+                title="Documentation Technique"
                 description="Consultez notre documentation complète pour configurer et optimiser votre serveur TrackMania Nations Forever. Guides RCON, XAseco et configuration avancée."
             />
             <JsonLd data={{
@@ -451,8 +451,8 @@ export function ArticleView() {
 
     return (
         <div style={{ display: 'flex', gap: 48, maxWidth: 1200, margin: '0 auto', padding: '0 24px 48px' }}>
-            <SEO 
-                title={article.title} 
+            <SEO
+                title={article.title}
                 description={article.desc}
             />
             <JsonLd data={{
@@ -514,9 +514,9 @@ export function ArticleView() {
                     `}</style>
                     <div className="doc-content" dangerouslySetInnerHTML={{
                         __html: article.content
-                            .replace(/# (.*)/g, '<h1>$1</h1>')
-                            .replace(/## (.*)/g, '<h2>$1</h2>')
-                            .replace(/### (.*)/g, '<h3>$1</h3>')
+                            .replace(/^# (.*)/gm, '')
+                            .replace(/^## (.*)/gm, '<h2>$1</h2>')
+                            .replace(/^### (.*)/gm, '<h3>$1</h3>')
                             .replace(/> \[\!NOTE\]\n> (.*)/g, '<blockquote><strong style="color:var(--text-high);display:block;margin-bottom:8px">Note:</strong><p>$1</p></blockquote>')
                             .replace(/> \[\!IMPORTANT\]\n> (.*)/g, '<blockquote style="border-left-color:var(--yellow)"><strong style="color:var(--yellow);display:block;margin-bottom:8px">Important:</strong><p>$1</p></blockquote>')
                             .replace(/> \[\!TIP\]\n> (.*)/g, '<blockquote style="border-left-color:var(--cyan)"><strong style="color:var(--cyan);display:block;margin-bottom:8px">Astuce:</strong><p>$1</p></blockquote>')
