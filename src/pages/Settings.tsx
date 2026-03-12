@@ -42,7 +42,6 @@ export default function Settings() {
             <SEO 
                 title="Paramètres du Compte" 
                 description="Gérez vos informations personnelles, votre sécurité et vos préférences de notification."
-                noindex
             />
             <div className="page-header">
                 <h1 className="page-title">Paramètres</h1>

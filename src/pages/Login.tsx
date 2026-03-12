@@ -29,7 +29,6 @@ export default function Login() {
             <SEO 
                 title="Connexion" 
                 description="Connectez-vous à votre interface de gestion TrackHost."
-                noindex
             />
             <div className="auth-bg-glow" />
             <div className="auth-card">

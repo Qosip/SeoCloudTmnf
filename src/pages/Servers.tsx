@@ -223,7 +223,6 @@ export default function Servers() {
             <SEO
                 title="Tableau de bord - Mes Serveurs"
                 description="Gérez vos serveurs TrackMania Nations Forever depuis votre espace personnel."
-                noindex
             />
             <div className="page-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <div>

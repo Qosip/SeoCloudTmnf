@@ -4,14 +4,12 @@ import { useLocation } from 'react-router-dom';
 interface SEOProps {
   title: string;
   description: string;
-  canonicalPath?: string;
-  noindex?: boolean;
 }
 
-export default function SEO({ title, description, canonicalPath, noindex }: SEOProps) {
+export default function SEO({ title, description }: SEOProps) {
   const location = useLocation();
-  const domain = 'https://www.trackhost.gg';
-  const url = domain + (canonicalPath || location.pathname);
+  const domain = typeof window !== 'undefined' ? window.location.origin : 'https://www.trackhost.gg';
+  const url = domain + location.pathname;
 
   // Truncate title logic (60 chars max usually)
   const fullTitle = `${title} | TrackHost`;
@@ -25,7 +23,6 @@ export default function SEO({ title, description, canonicalPath, noindex }: SEOP
       <title>{finalTitle}</title>
       <meta name="description" content={finalDesc} />
       <link rel="canonical" href={url} />
-      {noindex && <meta name="robots" content="noindex, nofollow" />}
 
       <meta property="og:title" content={finalTitle} />
       <meta property="og:description" content={finalDesc} />

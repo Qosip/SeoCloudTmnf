@@ -85,7 +85,7 @@ function Sidebar() {
 
   return (
     <aside className="sidebar">
-      <Link to="/" className="sidebar-logo" style={{ textDecoration: 'none' }}>
+      <Link to="/" className="sidebar-logo" style={{ textDecoration: 'none' }} aria-label="Accueil">
         <div className="sidebar-logo-icon"><Zap size={18} /></div>
         <span className="sidebar-logo-text">TrackHost</span>
       </Link>

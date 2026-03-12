@@ -144,14 +144,13 @@ export default function Checkout() {
             <SEO 
                 title="Configuration & Paiement" 
                 description="Configurez votre serveur, choisissez vos options et finalisez votre commande en toute sécurité."
-                noindex
             />
             <div className="auth-bg-glow" />
             <div style={{ width: '100%', maxWidth: 980, margin: '0 auto', padding: '0 24px' }}>
 
                 {/* Header */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 28 }}>
-                    <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
+                    <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }} aria-label="Accueil TrackHost">
                         <div className="sidebar-logo-icon" style={{ width: 28, height: 28 }}><Zap size={14} /></div>
                         <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 18, color: 'var(--text-high)', letterSpacing: '0.05em' }}>TrackHost</span>
                     </Link>

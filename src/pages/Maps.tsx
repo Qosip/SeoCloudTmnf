@@ -31,7 +31,6 @@ export default function Maps() {
             <SEO 
                 title="Gestion des Maps & Plugins" 
                 description="Gérez votre bibliothèque de maps, installez des plugins (XAseco, ManiaLive) et configurez votre serveur dédié."
-                noindex
             />
             <div className="page-header">
                 <h1 className="page-title">Maps & Plugins</h1>

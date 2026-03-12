@@ -47,7 +47,6 @@ export default function Register() {
             <SEO 
                 title="Créer un compte" 
                 description="Rejoignez TrackHost et créez votre serveur TrackMania Nations Forever en quelques secondes."
-                noindex
             />
             <div className="auth-bg-glow" />
             <div className="auth-card">

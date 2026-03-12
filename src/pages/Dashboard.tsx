@@ -242,7 +242,6 @@ export default function Dashboard() {
             <SEO 
                 title="Tableau de bord - Live Monitoring" 
                 description="Suivez les performances de votre serveur TrackMania en temps réel : joueurs, CPU, RAM et logs."
-                noindex
             />
             {kickTarget && <KickModal player={kickTarget} onClose={() => setKickTarget(null)} />}
 

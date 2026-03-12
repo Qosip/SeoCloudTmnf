@@ -312,7 +312,6 @@ export default function Console() {
             <SEO 
                 title="Console RCON - Administration" 
                 description="Contrôlez votre serveur TrackMania via la console RCON : commandes, kick, ban et monitoring des logs en direct."
-                noindex
             />
             <div className="page-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <div>
