@@ -7,7 +7,7 @@ Allow: /docs/
 Allow: /blog/
 Allow: /pricing
 Allow: /products
-Allow: /promo
+Allow: /promotions
 Allow: /support
 
 # Pages privées / app (non indexables)

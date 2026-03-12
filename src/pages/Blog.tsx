@@ -10,6 +10,7 @@ import { motion } from 'framer-motion'
 type Reply = { id: string; author: string; avatar: string; date: string; content: string; likes: number }
 type Post = {
     id: string
+    slug: string
     title: string
     author: string
     avatar: string
@@ -26,6 +27,7 @@ type Post = {
 const POSTS: Post[] = [
     {
         id: '1',
+        slug: 'lancement-beta-trackhost',
         title: '📢 Lancement de la Bêta TrackHost — Rejoignez-nous !',
         author: 'TrackHost Team',
         avatar: 'TH',
@@ -43,6 +45,7 @@ const POSTS: Post[] = [
     },
     {
         id: '2',
+        slug: 'competition-map-neon-drift',
         title: 'Map Competition: "Neon Drift" - Cashprize 100€ 🏆',
         author: 'Speedy_TM',
         avatar: 'S',
@@ -59,6 +62,7 @@ const POSTS: Post[] = [
     },
     {
         id: '3',
+        slug: 'tuto-configurer-dedimania',
         title: '[Tuto] Configurer Dedimania avec son propre login',
         author: 'Admin_Mike',
         avatar: 'M',
@@ -73,6 +77,7 @@ const POSTS: Post[] = [
     },
     {
         id: '4',
+        slug: 'recherche-mappeurs-campagne-tech',
         title: 'Recherche mappeurs pour campagne Tech',
         author: 'GhostLine',
         avatar: 'G',
@@ -85,6 +90,7 @@ const POSTS: Post[] = [
     },
     {
         id: '5',
+        slug: 'serveur-invisible-solution',
         title: 'Serveur invisible dans la liste ? Solution inside.',
         author: 'Neo_Admin',
         avatar: 'N',
@@ -101,6 +107,7 @@ const POSTS: Post[] = [
     },
     {
         id: '6',
+        slug: 'tmnf-2026-boss-des-jeux-de-course',
         title: 'TMNF en 2026 : Toujours le boss des jeux de course ?',
         author: 'RetroGamer',
         avatar: 'R',
@@ -113,6 +120,7 @@ const POSTS: Post[] = [
     },
     {
         id: '7',
+        slug: 'changer-duree-timeattack-sans-restart',
         title: 'Comment changer la durée du TimeAttack sans restart ?',
         author: 'Kiki_Kart',
         avatar: 'K',
@@ -130,8 +138,8 @@ const TAGS = ['#Tournoi', '#Tuto', '#Tech', '#Dirt', '#RCON', '#XAseco', '#Dedim
 
 /* ─── Post Detail View ────────────────────────────────────────────────────── */
 function BlogPostView() {
-    const { id } = useParams()
-    const post = POSTS.find(p => p.id === id)
+    const { slug } = useParams()
+    const post = POSTS.find(p => p.slug === slug)
     const [replyText, setReplyText] = useState('')
 
     if (!post) return (
@@ -258,7 +266,7 @@ function BlogList() {
                         {filtered.length === 0 ? (
                             <div className="card" style={{ textAlign: 'center', padding: 48, color: 'var(--text-mid)' }}>Aucun résultat trouvé.</div>
                         ) : filtered.map(post => (
-                            <Link key={post.id} to={`/blog/${post.id}`} className={`card blog-post ${post.pinned ? 'pinned' : ''}`} style={{ padding: 24, cursor: 'pointer', textDecoration: 'none', color: 'inherit' }}>
+                            <Link key={post.id} to={`/blog/${post.slug}`} className={`card blog-post ${post.pinned ? 'pinned' : ''}`} style={{ padding: 24, cursor: 'pointer', textDecoration: 'none', color: 'inherit' }}>
                                 {post.pinned && <div className="pin-badge"><Award size={10} /> Épinglé</div>}
 
                                 <div style={{ display: 'flex', gap: 16 }}>
@@ -364,7 +372,7 @@ export default function Blog() {
     return (
         <Routes>
             <Route index element={<BlogList />} />
-            <Route path=":id" element={<BlogPostView />} />
+            <Route path=":slug" element={<BlogPostView />} />
         </Routes>
     )
 }

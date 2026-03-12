@@ -59,7 +59,7 @@ const NAV_GROUPS = [
     items: [
       { to: '/products', icon: ShoppingBag, label: 'Produits' },
       { to: '/pricing', icon: Tag, label: 'Tarifs' },
-      { to: '/promo', icon: Gift, label: 'Promotions' },
+      { to: '/promotions', icon: Gift, label: 'Promotions' },
     ],
   },
   {
@@ -167,7 +167,7 @@ function Sidebar() {
 const PT: Record<string, string> = {
   '/servers': 'Mes Serveurs', '/dashboard': 'Dashboard', '/console': 'Console RCON',
   '/maps': 'Maps & Plugins', '/settings': 'Paramètres', '/pricing': 'Tarifs',
-  '/products': 'Produits', '/promo': 'Promotions', '/blog': 'Communauté',
+  '/products': 'Produits', '/promotions': 'Promotions', '/blog': 'Communauté',
   '/docs': 'Documentation', '/support': 'Support', '/guides': 'Guides TMNF',
 }
 
@@ -228,7 +228,7 @@ function AppRoutes() {
       <Route path="/settings" element={<ProtectedRoute><AppShell><SettingsPage /></AppShell></ProtectedRoute>} />
       <Route path="/pricing" element={<AppShell><Pricing /></AppShell>} />
       <Route path="/products" element={<AppShell><Products /></AppShell>} />
-      <Route path="/promo" element={<AppShell><Promo /></AppShell>} />
+      <Route path="/promotions" element={<AppShell><Promo /></AppShell>} />
       <Route path="/blog/*" element={<AppShell><Blog /></AppShell>} />
       <Route path="/docs" element={<AppShell><Docs /></AppShell>}>
         <Route index element={<DocsHub />} />

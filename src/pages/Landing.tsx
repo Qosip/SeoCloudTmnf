@@ -73,7 +73,7 @@ export default function Landing() {
                         <Link to="/pricing" className="dropdown-link"><Tag size={14} /> <span>Grille Tarifaire</span></Link>
                         <Link to="/products" className="dropdown-link"><BarChart3 size={14} /> <span>Comparer les plans</span></Link>
                         <div className="dropdown-title">Offres</div>
-                        <Link to="/promo" className="dropdown-link"><Gift size={14} /> <span style={{ color: 'var(--primary)' }}>Promotions Actives</span></Link>
+                        <Link to="/promotions" className="dropdown-link"><Gift size={14} /> <span style={{ color: 'var(--primary)' }}>Promotions Actives</span></Link>
                         <Link to="/checkout" className="dropdown-link"><Zap size={14} /> <span>Commander un serveur</span></Link>
                     </NavDropdown>
 
@@ -112,7 +112,7 @@ export default function Landing() {
             </nav>
 
             {/* ── Promo Banner ── */}
-            <Link to="/promo" style={{ textDecoration: 'none' }}>
+            <Link to="/promotions" style={{ textDecoration: 'none' }}>
                 <div style={{ background: 'linear-gradient(90deg, var(--primary-dim), var(--cyan-dim))', borderBottom: '1px solid #00FF8730', padding: '10px 48px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16 }}>
                     <Gift size={14} style={{ color: 'var(--primary)' }} />
                     <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--text-mid)' }}>
@@ -302,7 +302,7 @@ export default function Landing() {
                         <p className="resource-desc">Communauté active, astuces serveur, tutoriels et annonces de la plateforme.</p>
                         <span className="resource-cta">Rejoindre <ArrowRight size={14} /></span>
                     </Link>
-                    <Link to="/promo" className="resource-card resource-card-green">
+                    <Link to="/promotions" className="resource-card resource-card-green">
                         <div className="resource-icon"><Gift size={28} /></div>
                         <h3 className="resource-title">Promotions</h3>
                         <p className="resource-desc">Codes de réduction et offres limitées pour vos hébergements TrackMania.</p>
@@ -328,7 +328,7 @@ export default function Landing() {
                         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                             <Link to="/products" style={{ fontSize: 13, color: 'var(--text-mid)', textDecoration: 'none' }}>Produits</Link>
                             <Link to="/pricing" style={{ fontSize: 13, color: 'var(--text-mid)', textDecoration: 'none' }}>Tarifs</Link>
-                            <Link to="/promo" style={{ fontSize: 13, color: 'var(--text-mid)', textDecoration: 'none' }}>Promotions</Link>
+                            <Link to="/promotions" style={{ fontSize: 13, color: 'var(--text-mid)', textDecoration: 'none' }}>Promotions</Link>
                         </div>
                     </div>
                     <div>
