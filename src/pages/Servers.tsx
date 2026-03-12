@@ -171,7 +171,7 @@ function ServerCard({ server, onAction }: { server: GameServer; onAction: (id: s
                         <Play size={12} /> Démarrer
                     </button>
                 )}
-                <Link to={`/settings`} className="btn btn-ghost" style={{ fontSize: 12, padding: '7px 12px', marginLeft: isOnline ? 0 : 'auto' }}>
+                <Link to={`/settings`} aria-label="Paramètres" className="btn btn-ghost" style={{ fontSize: 12, padding: '7px 12px', marginLeft: isOnline ? 0 : 'auto' }}>
                     <Settings size={12} />
                 </Link>
             </div>
@@ -220,8 +220,8 @@ export default function Servers() {
 
     return (
         <>
-            <SEO 
-                title="Tableau de bord - Mes Serveurs" 
+            <SEO
+                title="Tableau de bord - Mes Serveurs"
                 description="Gérez vos serveurs TrackMania Nations Forever depuis votre espace personnel."
                 noindex
             />

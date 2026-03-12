@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import { Head } from 'vite-react-ssg';
 import { useLocation } from 'react-router-dom';
 
 interface SEOProps {
@@ -8,25 +8,31 @@ interface SEOProps {
   noindex?: boolean;
 }
 
-export default function SEO({ title, description, canonicalPath, noindex }: SEOProps) {
+export default function SEO({ title, description, canonicalPath }: SEOProps) {
   const location = useLocation();
-  const domain = 'https://www.trackhost.gg';
+  // We use VITE_SITE_URL if defined (useful for local SEO scans), otherwise fallback to the production domain.
+  const domain = import.meta.env.VITE_SITE_URL || 'https://www.trackhost.gg';
   const url = domain + (canonicalPath || location.pathname);
+
+  // Truncate title logic (60 chars max usually)
   const fullTitle = `${title} | TrackHost`;
+  const finalTitle = fullTitle.length > 60 ? title.substring(0, 56) + '...' : fullTitle;
+
+  // Truncate description logic (155 max)
+  const finalDesc = description.length > 155 ? description.substring(0, 152) + '...' : description;
 
   return (
-    <Helmet>
-      <title>{fullTitle}</title>
-      <meta name="description" content={description} />
+    <Head>
+      <title>{finalTitle}</title>
+      <meta name="description" content={finalDesc} />
       <link rel="canonical" href={url} />
-      {noindex && <meta name="robots" content="noindex, nofollow" />}
 
-      <meta property="og:title" content={fullTitle} />
-      <meta property="og:description" content={description} />
+      <meta property="og:title" content={finalTitle} />
+      <meta property="og:description" content={finalDesc} />
       <meta property="og:url" content={url} />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content="TrackHost" />
       <meta property="og:image" content={`${domain}/assets/og-image.png`} />
-    </Helmet>
+    </Head>
   );
 }

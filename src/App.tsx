@@ -12,6 +12,8 @@ import { AuthProvider, useAuth } from './contexts/AuthContext'
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, isLoading } = useAuth()
   const location = useLocation()
+
+  if (typeof window === 'undefined') return <>{children}</>
   if (isLoading) return null
   if (!user) return <Navigate to="/login" state={{ from: location }} replace />
   return <>{children}</>
@@ -215,18 +217,14 @@ import type { RouteRecord } from 'vite-react-ssg'
 import { GUIDES } from './pages/Guides'
 import { ARTICLES } from './pages/Docs'
 
-import { HelmetProvider } from 'react-helmet-async'
-
 /* ─── Router ──────────────────────────────────────────────────────────────── */
 export const routes: RouteRecord[] = [
   {
     path: '/',
     element: (
-      <HelmetProvider>
-        <AuthProvider>
-          <Outlet />
-        </AuthProvider>
-      </HelmetProvider>
+      <AuthProvider>
+        <Outlet />
+      </AuthProvider>
     ),
     children: [
       /* Full-page (no shell) */
